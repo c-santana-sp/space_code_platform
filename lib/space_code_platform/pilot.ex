@@ -29,9 +29,17 @@ defmodule SpaceCodePlatform.Pilot do
     %__MODULE__{}
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)
-    # |> calculate_age()
     |> assoc_constraint(:location_planet)
-    # |> validate_number(:age, min: 18)
-    |> unique_constraint([:pilot_certification])
+    |> fill_age()
+    |> validate_number(:age, greater_than_or_equal_to: 18)
+    |> unique_constraint(:pilot_certification)
   end
+
+  defp fill_age(%Ecto.Changeset{valid?: true, changes: %{date_of_birth: date_of_birth}} = changeset) do
+    age = Date.utc_today()
+      |> Date.diff(date_of_birth)
+      |> div(365)
+    change(changeset, age: age)
+  end
+  defp fill_age(%Ecto.Changeset{valid?: false, changes: _changes} = changeset), do: changeset
 end
