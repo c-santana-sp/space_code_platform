@@ -3,6 +3,12 @@ defmodule SpaceCodePlatformWeb.PilotsController do
 
   action_fallback SpaceCodePlatformWeb.FallbackController
 
+  def create(conn, params) do
+    params
+    |> SpaceCodePlatform.create_pilot()
+    |> handle_response(conn, "create.json", :ok)
+  end
+
   def show(conn, %{"id" => id}) do
     id
     |> SpaceCodePlatform.fetch_pilot()
