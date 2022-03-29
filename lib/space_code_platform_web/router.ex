@@ -9,6 +9,8 @@ defmodule SpaceCodePlatformWeb.Router do
     pipe_through :api
 
     resources "/planets", PlanetsController, [:create, :show, :delete, :update]
+    resources "/pilots", PilotsController, [:create, :show, :delete, :update]
+
   end
 
   # Enables LiveDashboard only for development
