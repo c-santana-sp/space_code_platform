@@ -13,7 +13,16 @@ defmodule SpaceCodePlatform.Pilot.Get do
   defp get(uuid) do
     case Repo.get(Pilot, uuid) do
       nil -> {:error, "Pilot not found"}
-      pilot -> {:ok, pilot}
+      pilot ->
+        age = pilot |> calculate_age()
+        pilot_with_age = pilot |> Map.put(:age, age)
+        {:ok, pilot_with_age}
     end
+  end
+
+  def calculate_age(%Pilot{date_of_birth: date_of_birth}) do
+    Date.utc_today()
+    |> Date.diff(date_of_birth)
+    |> div(365)
   end
 end
