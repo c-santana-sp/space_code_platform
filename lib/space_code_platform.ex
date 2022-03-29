@@ -16,5 +16,6 @@ defmodule SpaceCodePlatform do
   defdelegate create_route(params), to: Route.Create, as: :call
   defdelegate fetch_route(params), to: Route.Get, as: :call
 
+  defdelegate create_pilot(params), to: Pilot.Create, as: :call
   defdelegate fetch_pilot(params), to: Pilot.Get, as: :call
 end
