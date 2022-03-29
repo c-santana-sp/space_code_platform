@@ -26,5 +26,7 @@ defmodule SpaceCodePlatform.Route do
     %__MODULE__{}
     |> cast(params, @required_fields)
     |> validate_required(@required_fields)
+    |> assoc_constraint(:origin_planet)
+    |> assoc_constraint(:destination_planet)
   end
 end
