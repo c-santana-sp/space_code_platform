@@ -1,7 +1,6 @@
 defmodule SpaceCodePlatform do
 
-  alias SpaceCodePlatform.Planet
-  alias SpaceCodePlatform.Route
+  alias SpaceCodePlatform.{Planet, Route}
 
   @moduledoc """
   SpaceCodePlatform keeps the contexts that define your domain
@@ -12,6 +11,7 @@ defmodule SpaceCodePlatform do
   """
 
   defdelegate create_planet(params), to: Planet.Create, as: :call
+  defdelegate fetch_planet(params), to: Planet.Get, as: :call
 
   defdelegate create_route(params), to: Route.Create, as: :call
 end
