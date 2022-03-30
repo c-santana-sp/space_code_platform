@@ -12,6 +12,7 @@ defmodule SpaceCodePlatformWeb.Router do
     resources "/pilots", PilotsController, [:create, :show, :delete, :update]
     resources "/routes", RoutesController, [:create, :show, :delete, :update]
     resources "/ships", ShipsController, [:create, :show, :delete, :update]
+    resources "/goods", GoodsController, [:create, :show, :delete, :update]
 
   end
 
